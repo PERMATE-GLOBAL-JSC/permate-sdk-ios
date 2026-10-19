@@ -1,22 +1,17 @@
-# PermateAttributionSDK — Binary distribution (SPM)
+# PermateAttributionSDK
 
-Package.swift ở branch này khai báo `binaryTarget`, dùng để phân phối SDK dưới dạng
-`.xcframework` đã build sẵn, thay vì source code.
+Binary Swift Package for Permate Attribution SDK `3.2.0`. Requires iOS 15.0 or newer.
 
-⚠️ **Bản hiện tại là bản preview** (URL zip có kèm commit SHA, host tạm ở
-`sdk.dev.permate.com/ios/previews/...`). Chỉ dùng để test quy trình tích hợp qua SPM — cần thay
-bằng URL release ổn định theo version trước khi gửi cho brand chính thức.
+Add this repository as a Swift Package dependency, select an exact version, then:
 
-## Cách tích hợp (cho brand)
+```swift
+import PermateAttributionSDK
+```
 
-1. Xcode → File → Add Package Dependencies.
-2. Dán URL của repo này.
-3. Chọn version (tag), ví dụ `1.0.0`.
-4. `import PermateAttributionSDK` trong code.
+The package resolves one immutable XCFramework:
 
-## Cách phát hành bản mới
+- URL: `https://sdk.pmcdn1.com/ios/releases/PermateAttributionSDK/3.2.0/PermateAttributionSDK-3.2.0.xcframework.zip`
+- SHA-256 / SwiftPM checksum: `b6d66d3bb5233551594dc5004c4df42a7d415872ec08e843955a7e86c81f9bad`
 
-1. Build `.xcframework`, nén `.zip`, host lên URL công khai/được cấp quyền cho brand truy cập.
-2. Tính checksum: `swift package compute-checksum <file>.zip`.
-3. Cập nhật `url` + `checksum` trong `Package.swift` trên branch này.
-4. Commit + tag version mới (semver, ví dụ `1.1.0`) + push kèm tag.
+The repository intentionally contains no SDK implementation source.
+Runtime app keys and environment configuration belong to the host app, never this package.
